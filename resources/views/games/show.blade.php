@@ -196,41 +196,6 @@
 
 
     </div>
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="mb-3">Reseñas</h5>
-
-            @forelse($reviews as $review)
-                <div class="border rounded p-3 mb-3">
-                    <div class="d-flex justify-content-between">
-                        <strong>{{ $review->title }}</strong>
-                        <small class="text-muted">{{ $review->created_at->format('d/m/Y H:i') }}</small>
-                    </div>
-
-                    <div class="text-muted small mb-2">
-                        Por: {{ $review->user->name ?? 'Usuario' }}
-                    </div>
-
-                    <p class="mb-0">{{ $review->content }}</p>
-
-                    @auth
-                        @if (auth()->id() === $review->user_id || auth()->user()->role === 'admin')
-                            <div class="mt-2 d-flex gap-2">
-                                {{-- Aquí luego metemos editar (form modal o página) --}}
-                                <form method="POST" action="{{ route('reviews.destroy', $review) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                        @endif
-                    @endauth
-                </div>
-            @empty
-                <p class="text-muted mb-0">Todavía no hay reseñas.</p>
-            @endforelse
-        </div>
-    </div>
 
 
 </x-app-layout>

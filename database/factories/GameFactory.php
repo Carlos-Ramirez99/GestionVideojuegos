@@ -43,7 +43,7 @@ class GameFactory extends Factory
                 'Co-op'
             ]),
 
-            // Imagen falsa
+            //Imagen falsa
             'cover_image' => 'https://via.placeholder.com/300x400?text=Game',
 
             'classification' => $this->faker->randomElement([
@@ -55,7 +55,7 @@ class GameFactory extends Factory
                 'PEGI 18'
             ]),
 
-            // Rating promedio (0.0 a 5.0)
+            //Rating promedio
             'average_rating' => $this->faker->randomFloat(1, 0, 5),
 
             'user_id' => User::inRandomOrder()->first()->id,

@@ -19,10 +19,10 @@ class RatingSeeder extends Seeder
         }
 
         foreach ($games as $game) {
-            // cuántas valoraciones tendrá este juego
+            //cuántas valoraciones tendrá este juego
             $numRatings = rand(3, min(20, count($users)));
 
-            // selecciona usuarios únicos para evitar duplicados
+            //selecciona usuarios únicos para evitar duplicados
             $pickedUsers = collect($users)->shuffle()->take($numRatings);
 
             foreach ($pickedUsers as $userId) {
@@ -37,7 +37,7 @@ class RatingSeeder extends Seeder
                 );
             }
 
-            // recalcular promedio en la tabla games
+            //recalcular promedio en la tabla games
             $game->updateAverageRating();
         }
     }

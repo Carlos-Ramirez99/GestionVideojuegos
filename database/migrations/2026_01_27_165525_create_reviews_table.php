@@ -21,7 +21,7 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // Opcional: ayuda a ordenar rápido por fecha
+
             $table->index(['game_id', 'created_at']);
         });
 

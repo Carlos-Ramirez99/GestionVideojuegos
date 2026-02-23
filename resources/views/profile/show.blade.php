@@ -32,7 +32,7 @@
                             <i class="bi bi-disc text-indigo-500 mr-2"></i>{{ __('Mi Colección de Juegos') }}
                         </h2>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            Explora los juegos que has aportado a la comunidad.
+                            Explora los juegos de tu colección.
                         </p>
                     </div>
                     @if($games->count() == 0)

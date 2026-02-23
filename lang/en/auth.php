@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Las credenciales no osn correctas.',
+    'failed' => 'Las credenciales no son correctas.',
     'password' => 'La contraseña introducida es incorrecta.',
     'throttle' => 'Has enviado muchos intentos de inicio de sesion. Espere unos :seconds seconds.',
 

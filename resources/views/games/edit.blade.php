@@ -131,7 +131,7 @@
                             <div class="mt-2">
                                 <small class="text-muted d-block mb-2">Portada actual:</small>
 
-                                {{-- Si guardas en storage --}}
+
                                 <img src="{{ asset('storage/' . $game->cover_image) }}"
                                      alt="Portada actual"
                                      class="img-fluid rounded shadow-sm"

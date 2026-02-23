@@ -12,9 +12,9 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1, // se sobreescribe en el seeder
-            'game_id' => 1, // se sobreescribe en el seeder
-            'title'   => $this->faker->sentence(6), // ✅ obligatorio
+            'user_id' => 1,
+            'game_id' => 1,
+            'title'   => $this->faker->sentence(6),
             'content' => $this->faker->realText(450),
         ];
     }

@@ -19,7 +19,7 @@ class ReviewSeeder extends Seeder
         }
 
         foreach ($games as $game) {
-            // reseñas por juego (puedes ajustar)
+            //reseñas por juego
             $numReviews = rand(0, 8);
 
             for ($i = 0; $i < $numReviews; $i++) {

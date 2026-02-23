@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    // 2️⃣ store: crear comentario
+    //crear comentario
 
     public function store(StoreReviewRequest $request, Game $game)
     {
@@ -26,10 +26,10 @@ class ReviewController extends Controller
     }
 
 
-    // 3️⃣ update: editar propio comentario
+    //editar tu comentario
     public function update(Request $request, Review $review)
     {
-        // 5️⃣ autorización: creador o admin
+        //creador o admin
         if (auth()->id() !== $review->user_id && auth()->user()->role !== 'admin') {
             abort(403);
         }
@@ -44,10 +44,10 @@ class ReviewController extends Controller
         return back()->with('success', 'Reseña actualizada correctamente.');
     }
 
-    // 4️⃣ destroy: eliminar
+    //eliminar
     public function destroy(Review $review)
     {
-        // 5️⃣ autorización: creador o admin
+        //creador o admin
         if (auth()->id() !== $review->user_id && auth()->user()->role !== 'admin') {
             abort(403);
         }

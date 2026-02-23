@@ -12,8 +12,8 @@ class RatingFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1,     // se sobreescribe en el seeder
-            'game_id' => 1,     // se sobreescribe en el seeder
+            'user_id' => 1,
+            'game_id' => 1,
             'rating'  => $this->faker->numberBetween(1, 5),
         ];
     }

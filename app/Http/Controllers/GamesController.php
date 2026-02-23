@@ -77,12 +77,11 @@ class GamesController extends Controller
                 ->value('rating')
             : null;
 
-        // ✅ Obtener reseñas
+        //Obtener reseñas
         $reviews = $game->reviews()
             ->latest()
             ->get();
 
-        // ✅ Un único return
         return view('games.show', compact(
             'game',
             'ratingsCount',

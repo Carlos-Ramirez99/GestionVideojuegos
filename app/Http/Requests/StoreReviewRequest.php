@@ -8,7 +8,7 @@ class StoreReviewRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        // 4️⃣ Solo usuarios autenticados pueden crear reseñas
+        //Solo usuarios autenticados pueden crear reseñas
         return auth()->check();
     }
 

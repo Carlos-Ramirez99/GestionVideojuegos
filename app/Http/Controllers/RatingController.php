@@ -18,14 +18,14 @@ class RatingController extends Controller
 
         $userId = auth()->id();
 
-        // Detectar si ya existe
+        //Detectar si ya existe
         $existing = Rating::where('user_id', $userId)
             ->where('game_id', $request->game_id)
             ->first();
 
         try {
             if ($existing) {
-                //Permitir actualizar propia valoración
+                //Permitir actualizar tu valoración
                 $existing->update([
                     'rating' => $request->rating,
                 ]);
@@ -33,7 +33,7 @@ class RatingController extends Controller
                 $message = 'Tu valoración se ha actualizado correctamente.';
                 $ratingModel = $existing;
             } else {
-                // Crear nueva
+                //Crear nueva
                 $ratingModel = Rating::create([
                     'user_id' => $userId,
                     'game_id' => $request->game_id,
@@ -43,13 +43,12 @@ class RatingController extends Controller
                 $message = 'Valoración guardada correctamente.';
             }
 
-            // Recalcular promedio
+            //Recalcular promedio
             $game = Game::find($request->game_id);
             $game?->updateAverageRating();
 
             $average = $game?->average_rating ?? 0;
 
-            //NUEVO: total de valoraciones del juego
             $count = Rating::where('game_id', $request->game_id)->count();
 
             //Respuesta JSON o redirección
@@ -58,7 +57,7 @@ class RatingController extends Controller
                     'message' => $message,
                     'average' => round((float) $average, 2),
                     'rating'  => $ratingModel->rating,
-                    'count'   => $count,              // ✅ añadido
+                    'count'   => $count,
                     'updated' => (bool) $existing,
                 ]);
             }
@@ -66,10 +65,9 @@ class RatingController extends Controller
             return back()->with('success', $message);
 
         } catch (QueryException $e) {
-            // Manejar duplicados (por carrera / doble click, etc.)
-            // MySQL: 1062, Postgres: 23505, SQLite: 19
-            $sqlStateOrCode = $e->errorInfo[0] ?? null; // SQLSTATE
-            $driverCode     = $e->errorInfo[1] ?? null; // code numérico (MySQL)
+            // Manejar duplicados.
+            $sqlStateOrCode = $e->errorInfo[0] ?? null;
+            $driverCode     = $e->errorInfo[1] ?? null;
 
             $isDuplicate = ($sqlStateOrCode === '23000') || ($driverCode === 1062);
 
@@ -81,7 +79,7 @@ class RatingController extends Controller
                 return back()->with('warning', $msg);
             }
 
-            // Otro error de BD
+
             $msg = 'Error de base de datos al guardar la valoración.';
             if ($request->wantsJson()) {
                 return response()->json(['message' => $msg], 500);

@@ -42,34 +42,7 @@
                 </div>
             </div>
 
-            {{-- Buscador --}}
-            <form class="mt-4" method="GET" action="{{ route('games.index') }}">
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <input type="text"
-                               name="q"
-                               value="{{ request('q') }}"
-                               class="form-control form-control-lg"
-                               placeholder="Buscar por título, género, plataforma…">
-                    </div>
 
-                    <div class="col-md-3">
-                        <select name="genre" class="form-select form-select-lg">
-                            <option value="">Todos los géneros</option>
-                            @php
-                                $genres = collect($games)->pluck('genre')->filter()->unique()->sort()->values();
-                            @endphp
-                            @foreach($genres as $g)
-                                <option value="{{ $g }}" @selected(request('genre') === $g)>{{ $g }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-3 d-grid">
-                        <button class="btn btn-primary btn-lg" type="submit">Filtrar</button>
-                    </div>
-                </div>
-            </form>
         </div>
 
         {{-- CONTENIDO --}}
